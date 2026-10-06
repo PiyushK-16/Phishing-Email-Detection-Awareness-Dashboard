@@ -59,10 +59,10 @@ Header analysis, SPF/DKIM/DMARC ingestion, domain/URL/hash reputation, better NL
 ## Screenshots
 Store in `screenshots/` (see docs/GUIDE.md for the checklist).
 
-![screenshots](04_dashboard(2).png),
-![screenshots](01_phishing_high_risk.png),
-![screenshots](02_legit_low_risk.png),
-![screenshots](08_awareness.png)
+![04_dashboard(2)](screenshots/04_dashboard(2).png)
+![01_phishing_high_risk](./screenshots/01_phishing_high_risk.png)
+![02_legit_low_risk](./screenshots/02_legit_low_risk.png)
+![08_awareness](./screenshots/08_awareness.png)
 
 ## Author
 Piyush K. Ahirwar - Cybersecurity student
