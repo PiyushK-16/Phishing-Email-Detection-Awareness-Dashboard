@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phishing Email Detection &amp; Awareness Dashboard</title>
+<link rel="stylesheet" href="style.css"></head>
+<body>
+<header><h1>🛡️ Phishing Email Detection &amp; Awareness Dashboard</h1>
+<nav><button data-tab="analyzer" class="active">Analyzer</button><button data-tab="dashboard">Dashboard</button><button data-tab="history">History</button><button data-tab="awareness">Awareness</button></nav></header>
+<main>
+<section id="analyzer" class="tab">
+ <p class="note">Educational tool for <b>synthetic or authorized</b> emails. Links are never opened and attachments are never executed.</p>
+ <div class="grid2"><div class="card">
+  <label>Sender <input id="sender" maxlength="320" placeholder='Name &lt;user@example.org&gt;'></label>
+  <label>Subject <input id="subject" maxlength="300"></label>
+  <label>Body <textarea id="body" rows="9" maxlength="50000"></textarea></label>
+  <label>Attachment filename (optional) <input id="att" maxlength="255" placeholder="invoice.pdf.exe"></label>
+  <label>Or upload safe sample (.txt / .eml, max 200 KB) <input type="file" id="file" accept=".txt,.eml"></label>
+  <div class="row"><button id="go" class="primary">ANALYZE EMAIL</button><button id="s1">Load phishing sample</button><button id="s2">Load legitimate sample</button></div>
+  <p id="err" class="error"></p></div>
+ <div class="card" id="result"><p>Results appear here.</p></div></div>
+</section>
+<section id="dashboard" class="tab hidden">
+ <div class="cards" id="cards"></div>
+ <div class="charts">
+  <div class="card"><h3>Classification distribution</h3><canvas id="c1"></canvas></div>
+  <div class="card"><h3>Flagged vs not flagged</h3><canvas id="c2"></canvas></div>
+  <div class="card"><h3>Top detected indicators</h3><canvas id="c3"></canvas></div>
+  <div class="card"><h3>Risk score distribution</h3><canvas id="c4"></canvas></div>
+  <div class="card"><h3>Detection trend (per day)</h3><canvas id="c5"></canvas></div>
+  <div class="card"><h3>Most common suspicious keywords</h3><canvas id="c6"></canvas></div>
+ </div>
+</section>
+<section id="history" class="tab hidden"><div class="card">
+ <div class="row"><input id="q" placeholder="Search subject/domain">
+ <select id="fc"><option value="">All classes</option><option>LOW RISK</option><option>MODERATE RISK</option><option>SUSPICIOUS</option><option>HIGH RISK / LIKELY PHISHING</option></select>
+ <select id="sort"><option value="created_at">Newest</option><option value="risk_score">Risk score</option></select>
+ <button id="reload">Apply</button></div>
+ <table><thead><tr><th>ID</th><th>Domain</th><th>Subject</th><th>Score</th><th>Class</th><th>When</th><th></th></tr></thead><tbody id="rows"></tbody></table>
+ <div id="detail"></div></div></section>
+<section id="awareness" class="tab hidden"><div class="card">
+ <h2>How to spot a phishing email</h2><ol>
+ <li><b>Sender address</b> – does the real address match who it claims to be?</li>
+ <li><b>Domain spelling</b> – look for swapped characters (0/o, 1/l) and extra words.</li>
+ <li><b>Unexpected urgency</b> – pressure to act "now" is a manipulation tactic.</li>
+ <li><b>Suspicious links</b> – hover to preview; raw IPs and odd domains are red flags.</li>
+ <li><b>Credential requests</b> – real services rarely ask for passwords by email.</li>
+ <li><b>Unexpected attachments</b> – especially .exe, .js, .zip or double extensions.</li>
+ <li><b>Generic greetings</b> – "Dear customer" can signal a mass mailing.</li>
+ <li><b>Unusual payment requests</b> – gift cards, new bank details, secrecy.</li>
+ <li><b>Threatening language</b> – account closure, legal action.</li>
+ <li><b>Context</b> – were you expecting this message? No single sign proves phishing.</li></ol>
+ <h2>Before you click checklist</h2><ul class="check">
+ <li>☐ Do I know and expect this sender?</li><li>☐ Does the domain look exactly right?</li>
+ <li>☐ Is it pressuring me to hurry?</li><li>☐ Can I reach the site by typing the official address myself?</li>
+ <li>☐ Is it asking for passwords, codes or personal data?</li><li>☐ Did I verify through a second, trusted channel?</li>
+ <li>☐ If unsure, did I report it instead of clicking?</li></ul>
+ <p class="note">HTTPS (the padlock) only means the connection is encrypted – phishing sites can have it too.</p></div></section>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="app.js"></script>
+</body></html>
